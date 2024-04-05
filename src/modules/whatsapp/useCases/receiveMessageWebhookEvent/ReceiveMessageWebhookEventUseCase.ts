@@ -424,6 +424,11 @@ class ReceiveMessageWebhookEventUseCase {
               }
             } else if (openTicketByContact.stage === 'book_appointment_speciality') {
               await this.ticketsReposity.update(openTicketByContact.id, "book_appointment_speciality_option", 1);
+
+              const tickets = this.ticketsReposity.list();
+
+              console.log(tickets);
+
               if (message === 'btn_book_appointment_unimed_plan') {
                 const data = {
                   "messaging_product": "whatsapp",
@@ -442,7 +447,7 @@ class ReceiveMessageWebhookEventUseCase {
                           "title": "Opções disponíveis",
                           "rows": [
                             {
-                              "id": "btn_book_with_cardiolody",
+                              "id": "btn_book_cardiolody",
                               "title": "Cargiologia",
                             },
                             {
@@ -508,7 +513,7 @@ class ReceiveMessageWebhookEventUseCase {
                           "title": "Opções disponíveis",
                           "rows": [
                             {
-                              "id": "btn_book_with_cardiolody",
+                              "id": "btn_book_cardiolody",
                               "title": "Cargiologia",
                             },
                             {
@@ -574,7 +579,7 @@ class ReceiveMessageWebhookEventUseCase {
                           "title": "Opções disponíveis",
                           "rows": [
                             {
-                              "id": "btn_book_with_cardiolody",
+                              "id": "btn_book_cardiolody",
                               "title": "Cargiologia",
                             },
                             {
@@ -634,7 +639,7 @@ class ReceiveMessageWebhookEventUseCase {
                 "interactive": {
                   "type": "list",
                   "body": {
-                    "text": 'Por favor selecine um dia disponível para fazer o agendamento em abril de 2024.\n \n'
+                    "text": 'Por favor selecione um dia disponível para fazer o agendamento em abril de 2024.\n \n'
                   },
                   "action": {
                     "button": "Abrir opções",
@@ -740,7 +745,7 @@ class ReceiveMessageWebhookEventUseCase {
                 messaging_product: "whatsapp",
                 to: contact.whatsapp_number,
                 text: {
-                  body: 'Agendamento realizado com sucesso!\n \nCaso precise remarcar ou desmcarcar consulta, pedimos entre em contato com no minimo 24h de atecedência.\n \nObrigado por usar nossos serviços.'
+                  body: 'Agendamento realizado com sucesso!\n \nCaso precise remarcar ou desmarcar consulta, pedimos entre em contato com no minimo 24h de atecedência.\n \nObrigado por usar nossos serviços.'
                 },
               };
 
