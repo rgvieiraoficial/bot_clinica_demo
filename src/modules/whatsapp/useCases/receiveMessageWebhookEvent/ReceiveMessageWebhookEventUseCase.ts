@@ -253,9 +253,33 @@ class ReceiveMessageWebhookEventUseCase {
                 }
               }
             } else if (openTicketByContact.stage === 'book_appointment_menu') {
-              if (message === 'btn_book_appointment_unimed_plan') {
-                await this.ticketsReposity.update(openTicketByContact.id, "book_appointment_speciality", 1);
+              await this.ticketsReposity.update(openTicketByContact.id, "book_appointment_speciality_list", 1);
 
+              const rows = [
+                {
+                  "id": "btn_book_cardiolody",
+                  "title": "Cardiologia",
+
+                },
+                {
+                  "id": "btn_book_gp",
+                  "title": "Clínica Médica",
+                },
+                {
+                  "id": "btn_book_with_dermatology",
+                  "title": "Dermatologia",
+                },
+                {
+                  "id": "btn_book_psychology",
+                  "title": "Psicologia",
+                },
+                {
+                  "id": "btn_back_to_the_start",
+                  "title": "Voltar ao ínicio",
+                }
+              ];
+
+              if (message === 'btn_book_appointment_unimed_plan') {
                 const data = {
                   "messaging_product": "whatsapp",
                   "recipient_type": "individual",
@@ -271,29 +295,7 @@ class ReceiveMessageWebhookEventUseCase {
                       "sections": [
                         {
                           "title": "Opções disponíveis",
-                          "rows": [
-                            {
-                              "id": "btn_book_cardiolody",
-                              "title": "Cardiologia",
-
-                            },
-                            {
-                              "id": "btn_book_gp",
-                              "title": "Clínica Médica",
-                            },
-                            {
-                              "id": "btn_book_with_dermatology",
-                              "title": "Dermatologia",
-                            },
-                            {
-                              "id": "btn_book_psychology",
-                              "title": "Psicologia",
-                            },
-                            {
-                              "id": "btn_back_to_the_start",
-                              "title": "Voltar ao ínicio",
-                            }
-                          ]
+                          "rows": rows
                         }
                       ]
                     }
@@ -310,8 +312,6 @@ class ReceiveMessageWebhookEventUseCase {
                   console.log(err.message);
                 }
               } else if (message === 'btn_book_appointment_porto_seguro_plan') {
-                await this.ticketsReposity.update(openTicketByContact.id, "book_appointment_speciality", 1);
-
                 const data = {
                   "messaging_product": "whatsapp",
                   "recipient_type": "individual",
@@ -327,29 +327,7 @@ class ReceiveMessageWebhookEventUseCase {
                       "sections": [
                         {
                           "title": "Opções disponíveis",
-                          "rows": [
-                            {
-                              "id": "btn_book_cardiolody",
-                              "title": "Cardiologia",
-
-                            },
-                            {
-                              "id": "btn_book_gp",
-                              "title": "Clínica Médica",
-                            },
-                            {
-                              "id": "btn_book_with_dermatology",
-                              "title": "Dermatologia",
-                            },
-                            {
-                              "id": "btn_book_psychology",
-                              "title": "Psicologia",
-                            },
-                            {
-                              "id": "btn_back_to_the_start",
-                              "title": "Voltar ao ínicio",
-                            }
-                          ]
+                          "rows": rows,
                         }
                       ]
                     }
@@ -366,8 +344,6 @@ class ReceiveMessageWebhookEventUseCase {
                   console.log(err.message);
                 }
               } else if (message === 'btn_book_appointment_particular_plan') {
-                await this.ticketsReposity.update(openTicketByContact.id, "book_appointment_speciality", 1);
-
                 const data = {
                   "messaging_product": "whatsapp",
                   "recipient_type": "individual",
@@ -383,29 +359,7 @@ class ReceiveMessageWebhookEventUseCase {
                       "sections": [
                         {
                           "title": "Opções disponíveis",
-                          "rows": [
-                            {
-                              "id": "btn_book_cardiolody",
-                              "title": "Cardiologia",
-
-                            },
-                            {
-                              "id": "btn_book_gp",
-                              "title": "Clínica Médica",
-                            },
-                            {
-                              "id": "btn_book_with_dermatology",
-                              "title": "Dermatologia",
-                            },
-                            {
-                              "id": "btn_book_psychology",
-                              "title": "Psicologia",
-                            },
-                            {
-                              "id": "btn_back_to_the_start",
-                              "title": "Voltar ao ínicio",
-                            }
-                          ]
+                          "rows": rows,
                         }
                       ]
                     }
@@ -422,10 +376,10 @@ class ReceiveMessageWebhookEventUseCase {
                   console.log(err.message);
                 }
               }
-            } else if (openTicketByContact.stage === 'book_appointment_speciality') {
+            } else if (openTicketByContact.stage === 'book_appointment_speciality_list') {
               await this.ticketsReposity.update(openTicketByContact.id, "book_appointment_speciality_option", 1);
 
-              const tickets = this.ticketsReposity.list();
+              const tickets = await this.ticketsReposity.list();
 
               console.log(tickets);
 
