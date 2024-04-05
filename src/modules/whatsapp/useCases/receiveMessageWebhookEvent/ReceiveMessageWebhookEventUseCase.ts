@@ -699,7 +699,7 @@ class ReceiveMessageWebhookEventUseCase {
                 messaging_product: "whatsapp",
                 to: contact.whatsapp_number,
                 text: {
-                  body: 'Agendamento realizado com sucesso!\n \nCaso precise remarcar ou desmarcar consulta, pedimos entre em contato com no minimo 24h de atecedência.\n \nObrigado por usar nossos serviços.'
+                  body: 'Agendamento realizado com sucesso!\n \nCaso precise remarcar ou desmarcar alguma consulta, pedimos que entre em contato com no minimo 24h de antecedência.\n \nObrigado por usar nossos serviços.'
                 },
               };
 
@@ -716,7 +716,7 @@ class ReceiveMessageWebhookEventUseCase {
           }
         }
       } else {
-        console.log('Here...');
+        console.log('Here...is we again...');
 
         await this.ticketsReposity.create({
           stage: 'initial_list_menu',
