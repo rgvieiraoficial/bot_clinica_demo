@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  bot-clinica-demo:
+    build: .
+    container_name: bot_clinica_demo
+    restart: on-failure
+    ports:
+      - 3386:3386
+      - 9229:9229 #Você pode inserir essa porta tbm pra poder usar o debug
+    environment:
+      - VERIFY_TOKEN=768d30d7-737f-41a2-85e1-6eaea6432a94
+      - WHATSAPP_TOKEN=EAAQh8rbmaIEBOZBhb3NNC3cwi7Air5FZAtpfurS2pBq1HpS0h1VpLK0zmtwTbZAO6OsN78K64rxBDPFWCxFhfHCDysNGZCfHRgMlb78QLtJNhSV1ZBfNX7tOAvnZA0qqOwc78HJAEedWl7TbZB2o11TU7MuXpkA06eC9x99CiM3RFaYycZB1UcsI9g3HbsBaMEKtRNyDdsE6ZAZCok5aK8Rb0ZD
+    volumes:
+      - .:/usr/app
