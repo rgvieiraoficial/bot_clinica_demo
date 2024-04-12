@@ -103,9 +103,9 @@ class ReceiveMessageWebhookEventUseCase {
     } else {
       contact = contactAreadyExists;
 
-      const openTicketByContact = await this.ticketsReposity.findByContactId(contact.id);
+      const openTicketByContact = await this.ticketsReposity.findOpenTicketByContact(contact.id);
 
-      if (openTicketByContact.status === 1) {
+      if (openTicketByContact) {
         if (message === '#Sair') {
           await this.ticketsReposity.update(openTicketByContact.id, "initial_list_menu", 2);
 

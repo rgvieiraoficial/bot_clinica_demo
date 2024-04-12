@@ -47,6 +47,12 @@ class TicketsRepository implements ITicketsRepository {
     return ticket;
   }
 
+  async findOpenTicketByContact(contact_id: string): Promise<Ticket | null> {
+    const ticket = this.tickets.find((ticket) => ticket.contact_id === contact_id && ticket.status === 1);
+
+    return ticket;
+  }
+
   async update(id: string, stage: string, status: number): Promise<void> {
     const ticket = this.tickets.find((ticket) => ticket.id === id);
 
