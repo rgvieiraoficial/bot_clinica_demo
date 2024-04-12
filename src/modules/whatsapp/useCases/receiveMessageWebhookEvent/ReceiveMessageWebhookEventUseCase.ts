@@ -379,10 +379,6 @@ class ReceiveMessageWebhookEventUseCase {
             } else if (openTicketByContact.stage === 'book_appointment_speciality_list') {
               await this.ticketsReposity.update(openTicketByContact.id, "book_appointment_speciality_option", 1);
 
-              const tickets = await this.ticketsReposity.list();
-
-              console.log(tickets);
-
               if (message === 'btn_book_appointment_unimed_plan') {
                 const data = {
                   "messaging_product": "whatsapp",
@@ -716,8 +712,6 @@ class ReceiveMessageWebhookEventUseCase {
           }
         }
       } else {
-        console.log('Here...is we again...');
-
         await this.ticketsReposity.create({
           stage: 'initial_list_menu',
           status: 1,
